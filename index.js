@@ -28,14 +28,19 @@ function scraping(){
         window.list.push(heading + "; " + location + "; " + phone)
     });
 
-    var time = setInterval(function(){
-        if(document.querySelector('[data-async-rclass="search"] .rlfl__tls') !== instance){
-            scraping();
-        }
-    }, 1000);
+    if(
+        document.querySelector("[role=presentation] td.cur").nextElementSibling &&
+        document.querySelector("[role=presentation] td.cur").nextElementSibling.querySelector('a')
+    ){
+        var time = setInterval(function(){
+            if(document.querySelector('[data-async-rclass="search"] .rlfl__tls') !== instance){
+                scraping();
+            }
+        }, 1000);
 
-
-    document.querySelector("[role=presentation] td.cur").nextElementSibling.querySelector('a').click();
+        document.querySelector("[role=presentation] td.cur").nextElementSibling.querySelector('a').click();
+    }
+    
 }
 
 
