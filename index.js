@@ -8,8 +8,8 @@ function normalize(text){
 
 items.forEach(function(item){
     var heading = normalize(item.querySelector("[role=heading]").innerText);
-    var location = normalize(item.querySelector(".rllt__details div")[2].querySelector('span')[1].innerText);
-    var phone = normalize(item.querySelector(".rllt__details div")[3].innerText);
+    var location = normalize(item.querySelectorAll(".rllt__details > div")[2].innerText);
+    var phone = normalize(item.querySelectorAll(".rllt__details > div")[3].innerText);
 
     window.list.push(heading + ", " + location + ", " + phone)
 });
