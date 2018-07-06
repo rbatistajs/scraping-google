@@ -1,6 +1,6 @@
 
 var instance = null;
-window.list = window.list || [['Name', 'Location', 'Fone']];
+window.list = window.list || [['Name', 'Location', 'Phone', 'site']];
 
 console.log('Init Scraping');
 
@@ -18,14 +18,17 @@ function scraping(){
             var heading = normalize(item.querySelector("[role=heading]").innerText);
             var location = normalize(item.querySelectorAll(".rllt__details > div")[2].innerText);
             var phone = normalize(item.querySelectorAll(".rllt__details > div")[3].innerText);
+            var site = "";
+            if(item.querySelector("a[ping]")){
+                site = item.querySelector("a[ping]").getAttribute("href");
+            }
         } catch (e) {
             console.log("error:", e);
             console.log(item);
             return;
         }
 
-        console.log(heading + "," + location + "," + phone);
-        window.list.push([heading, location, phone])
+        window.list.push([heading, location, phone, site])
     });
 
     if(
