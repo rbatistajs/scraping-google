@@ -1,6 +1,8 @@
 
 var instance = null;
 
+console.log('Init Scraping');
+
 function scraping(){
     instance = document.querySelector('[data-async-rclass="search"] .rlfl__tls')
     var items = document.querySelectorAll('[data-async-rclass="search"] .rlfl__tls > div[jstcache]');
@@ -12,9 +14,17 @@ function scraping(){
     }
 
     items.forEach(function(item){
-        var heading = normalize(item.querySelector("[role=heading]").innerText);
-        var location = normalize(item.querySelectorAll(".rllt__details > div")[2].innerText);
-        var phone = normalize(item.querySelectorAll(".rllt__details > div")[3].innerText);
+        try {
+            var heading = normalize(item.querySelector("[role=heading]").innerText);
+            var location = normalize(item.querySelectorAll(".rllt__details > div")[2].innerText);
+            var phone = normalize(item.querySelectorAll(".rllt__details > div")[3].innerText);
+        } catch (e) {
+            console.log("error:", e);
+            console.log(item);
+            return;
+        }
+
+        console.log(heading + "; " + location + "; " + phone);
         window.list.push(heading + "; " + location + "; " + phone)
     });
 
