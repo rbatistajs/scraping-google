@@ -46,7 +46,7 @@ function scraping(){
         let csvContent = "data:text/csv;charset=utf-8,";
 
         rows.forEach(function(rowArray){
-           let row = rowArray.join(",");
+           let row = rowArray.join(";");
            csvContent += row + "\r\n";
         });
 
