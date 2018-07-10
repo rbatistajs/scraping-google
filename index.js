@@ -32,6 +32,7 @@ function scraping(){
     });
 
     if(
+        document.querySelector("[role=presentation] td.cur") &&
         document.querySelector("[role=presentation] td.cur").nextElementSibling &&
         document.querySelector("[role=presentation] td.cur").nextElementSibling.querySelector('a')
     ){
